@@ -1,37 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎙️ 멀티에이전트 기반 자동 팟캐스트 생성 시스템
 
-## Getting Started
+강의 슬라이드로부터 텍스트·이미지를 분석해  
+대본을 자동 생성하고, 후속 질문까지 이어지는  
+인터랙티브 팟캐스트를 제작하는 멀티에이전트 시스템입니다.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 주요 기능
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **슬라이드 분석**: 텍스트 및 이미지 추출 (OpenAI Vision 기반)
+- **자동 대본 생성**: 주제 요약 + 설명
+- **질문 자동 생성**: follow-up 질문과 클릭형 인터페이스
+- **후속 콘텐츠 생성**: 질문 클릭 시 후속 팟캐스트 자동 생성
+- **TTS 기반 오디오 출력**: 자연스러운 팟캐스트 음성 파일 생성
+- **멀티에이전트 병렬 처리**: 12분 → 3분 내외로 처리 시간 단축
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 에이전트 구성
 
-## Learn More
+- `SlideExtractor`: 텍스트/이미지 파싱
+- `ImageDescriber Agents`: 이미지 병렬 분석 (멀티 에이전트)
+- `ScriptGenerator`: 통합 대본 작성
+- `QuestionGenerator`: 후속 질문 생성
+- `TTSAgent`: 음성 변환 (OpenAI TTS)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 사용 기술
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **OpenAI API** (GPT-4 Vision, TTS, STT)
+- **LangGraph** – 에이전트 흐름 관리
+- **FastAPI** – API 서버
+- **Langfuse** – 로그 추적 및 디버깅
+- **Mermaid** – 프로세스 시각화
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 배운 점
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# my-multimodal-podcast
+- 멀티모달 정보 분석 및 병렬 에이전트 설계
+- LangGraph 기반 상태 흐름 모델링
+- 후속 질문 → 대본 → TTS까지 이어지는 UX 파이프라인 구축
+- race condition 방지를 위한 에이전트 UUID 및 구조 설계
+
+
+
+
